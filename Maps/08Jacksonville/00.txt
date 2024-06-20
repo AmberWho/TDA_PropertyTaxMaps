@@ -1,0 +1,11 @@
+Zip Codes:
+01 - 32208(topleft)
+02 - 32208(bottomright)
+03 - 32254
+04 - 32207(left)
+05 - 32210(left)
+06 - 32217(left)
+07 - 32222
+08 - 32244(right)
+09 - 32216(center)
+10 - 32223(bottom)
