@@ -18,7 +18,6 @@ from persim import PersImage
     produce numpy containing persistent points that
     construct the persistent diagram.
   dimension = {0, 1}, specify method of filtration.
-
 """
 def pers(filename, dimension = 0):
   img = PIL.Image.open(filename)
