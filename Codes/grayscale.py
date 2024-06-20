@@ -5,11 +5,10 @@ Author:   Amber, Anbo Wu
 Date:     March 2021
 Project:  Topological Data Analysis in an Economic Context: Property Tax Maps
 
-Command:  python grayscale.py path path2 type
-          path - file path and name of original image
-          path2 - file path and name of output grayscale image
-          type - type of legend used by the original image
-                 'pink' or 'orange'
+Command:  python grayscale.py path (newpath)
+          path - （file path and） name of original image, excluding filename extension
+          newpath - optional, （file path and） name of output grayscale image, excluding filename extention
+          
 Description:
   Compatible with two sets of color legend offered by PropertyShark
   and transform sample images to a clean uniform-grayscale version.
@@ -19,19 +18,25 @@ from PIL import Image
 import sys
 
 # open up a file, ready for processing.
-if (len(sys.argv) == 3): 
+if (len(sys.argv) == 2): 
   file = sys.argv[1]
   file2 = sys.argv[1]
-  _type = sys.argv[2]
-elif (len(sys.argv) == 4):
+elif (len(sys.argv) == 3):
   file = sys.argv[1]
   file2 = sys.argv[2]
-  _type = sys.argv[3]
 else:
-  # instead of using terminal, change this directly and run this file.
-  file = 'default' 
-  file2 = 'default'
-  _type = 'pink'
+  sys.exit('Invalid arguments. Try [python grayscale.py path] or [python grayscale.py path newpath], excluding filename extension.')
+  
+# select legend type based on city index.
+city = int(file[:2])
+match city:
+    case 4 | 5 | 8 | 9 | 11 | 12 | 13 | 14 | 17 | 20 | 21:
+        _type = 'pink'
+    case 1 | 2 | 3 | 6 | 7 | 10 | 15 | 16 | 18 | 19:
+        _type = 'orange'
+    case _:
+        sys.exit('Invalid city index. Valid range: 1-21.')
+
 im = Image.open(file + '.png')
 
 def legend (num):
@@ -39,8 +44,8 @@ def legend (num):
   # num = integer within range [0,11]
   #   0 means the lowest tax level, 11 means the highest
   # _type = {'pink','orange'}
-  #   'pink' - red~pink~blue legend
-  #   'orange' - red~orange~blue legend
+  #   'pink' - red~pink~darkblue legend
+  #   'orange' - red~orange~grayblue legend
   if (_type == 'pink'):
     legends = [(242,242,242),
                 (0,38,83),
@@ -153,4 +158,8 @@ c = [(255,255,255),
 newim = Image.new('RGB', im.size, color = 'black')
 for a in range(11,-1,-1):
     newim = layer(im, a, c[12-a], newim)
+    if a == 0:
+        print("|=  Finish! (,,•ω•,,)  -=-------")
+    else:
+        print("==" + str('%4d' % (((12-a)/12)*100)) +"% ╰(●’◡’●)╮  ==---=-------")
 newim.save(file2 + "gray.png")
