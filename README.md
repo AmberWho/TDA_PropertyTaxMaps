@@ -12,6 +12,9 @@ To reproduce the grayscale version of a map parcel, for example, _0101.png_, pla
 3. Wait until seeing `|=  Finish! (,,•ω•,,)  -=-------` message in the command prompt
 4. A grayscale version will be produced, titled _0101gray.png_
 
+### Filtrations
+
+
 ## Representative Clustering Results
 
 ## Land Use Maps of Samples from California
