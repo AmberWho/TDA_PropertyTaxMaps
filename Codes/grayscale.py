@@ -2,7 +2,7 @@
 grayscale.py
 
 Author:   Amber, Anbo Wu
-Date:     March 2021
+Date:     June 2024
 Project:  Topological Data Analysis in an Economic Context: Property Tax Maps
 
 Command:  python grayscale.py path (newpath)
