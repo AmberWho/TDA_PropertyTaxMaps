@@ -1,4 +1,4 @@
-__This is a work in process.__
+__This is a work in process. Last updated: July 6, 2024.__
 
 # Supplementary materials to Topological Data Analysis in an Economic Context: Property Tax Maps
 This is a joint work by David Damiano (Department of Mathematics and Computer Science, College of the Holy Cross, ddamiano@holycross.edu) and Anbo Wu (Department of Mathematics, The Ohio State University, wu.3488@osu.edu).
