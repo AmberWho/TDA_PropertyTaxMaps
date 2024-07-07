@@ -1,4 +1,4 @@
-__This Github site is currently under construction. It will provide data and code supporting [David Damiano, Anbo Wu, Topological Data Analysis in an Economic Context: Property Tax Maps](https://ieeexplore.ieee.org/document/9671276)__
+__This Github site is currently under construction. It will provide data and code supporting [David Damiano, Anbo Wu, "Topological Data Analysis in an Economic Context: Property Tax Maps"](https://ieeexplore.ieee.org/document/9671276).__
 
 # Supplementary materials to Topological Data Analysis in an Economic Context: Property Tax Maps
 This is a joint work by David Damiano (Department of Mathematics and Computer Science, College of the Holy Cross, ddamiano@holycross.edu) and Anbo Wu (Department of Mathematics, The Ohio State University, wu.3488@osu.edu).
