@@ -4,7 +4,7 @@ __This Github site is currently under construction. It will provide data and cod
 This is a joint work by David Damiano (Department of Mathematics and Computer Science, College of the Holy Cross, ddamiano@holycross.edu) and Anbo Wu (Department of Mathematics, The Ohio State University, wu.3488@osu.edu).
 ## Samples and Image-processing-related Files
 ### Raw property tax maps and grayscale images
-Property tax maps provided by PropertyShark are available in [Maps](/Maps), which contains 21 subfolders, each corresponding to one city, ordered by the total population. 
+Property tax maps sampled from PropertyShark are available in [Maps](/Maps), which contains 21 subfolders, each corresponding to one city, ordered by the total population. 
 
 In each city folder, the file _00.txt_ records the Census tracts contained by each map parcel (a tract will be included if roughly over 3/4 of the area is contained in the parcel). Property tax map parcels are named in the format of _city index + sample index + .png_, and the corresponding grayscale images are named in the format of _city index + sample index + gray.png_.
 
