@@ -2,7 +2,7 @@
 python_functions.py
 
 Author:   Amber, Anbo Wu
-Date:     June 2024
+Date:     July 2024
 Project:  Topological Data Analysis in an Economic Context: Property Tax Maps
 """
 
@@ -10,44 +10,78 @@ import PIL
 import numpy as np
 import matplotlib.pyplot as plt
 import copy
+from PIL import Image
 from ripser import lower_star_img
 from persim import PersImage
 
+# grayscale legend, sequenced from highest to lowest
+c = [(255,255,255),
+     (235,235,235),
+     (215,215,215),
+     (195,195,195),
+     (175,175,175),
+     (155,155,155),
+     (135,135,135),
+     (115,115,115),
+     (95,95,95),
+     (75,75,75),
+     (55,55,55),
+     (35,35,35),
+     (25,25,25)]
+
+"""
+  erosion(filename)
+    read grayscale images and perform the erosion
+    method.
+"""
+def erosion(filename):
+  img = PIL.Image.open(filename + "gray.png")
+  arr0 = np.array(img)
+  arr1 = np.delete(arr0, 1, 2)
+  arr = np.delete(arr1, 1, 2)
+  X = np.zeros((arr.shape[0], arr.shape[1]))
+  for t in range(arr.shape[0]):
+    for s in range(arr.shape[1]):
+      X[t, s] = checkval(arr[t, s])
+  X = merge(X)
+  newim = Image.new('RGB', img.size, color = 'black')
+  for x in range (0,img.size[0],1):
+    for y in range (0,img.size[1],1):
+        newim.putpixel((x,y), c[int(11.5-X[y,x])])
+  newim.save("mod" + filename + ".png")
+
 """
   pers(filename, dimension)
-    produce numpy containing persistent points that
-    construct the persistent diagram.
+    produce numpy array containing persistent points and plot
+    persistence diagram
   dimension = {0, 1}, specify method of filtration.
+  gendgm = if True, return array containing persistent points
+           if False, plot persistence diagram
+
 """
-def pers(filename, dimension = 0):
-  img = PIL.Image.open(filename)
+def pers(filename, dimension = 0, gendgm = False):
+  img = PIL.Image.open("mod"+filename + ".png")
   arr0 = np.array(img)
   arr1 = np.delete(arr0, 1, 2)
   arr = np.delete(arr1, 1, 2)
   x = np.zeros((arr.shape[0], arr.shape[1]))
   for t in range(arr.shape[0]):
     for s in range(arr.shape[1]):
-      x[t, s] = check(arr[t, s])
-  x = merge(x)
+      x[t,s] = checkval(arr[t, s])
   if dimension == 0:
     x = nodata0(x)
     x = remove0(lower_star_img(x))
   elif dimension == 1:
     x = nodata1(x)
     x = remove1(lower_star_img(-x))
-  return np.array(x)
-
-"""
-  plotPers(dgm, x, y, path, dimension)
-    plot according persistent diagram and save to path.
-  dimension = {0, 1}, specify method of filtration.
-"""
-def plotPers(dgm, x, y, path, dimension = 0):
+  dgm = np.array(x)
+  if gendgm:
+      return dgm
   fig = plt.figure(figsize=(6, 6))
   if dimension == 0:
-    plt.title("PD for $H_0$, Sample " + str('%02d' % x) + str('%02d' % y))
+    plt.title("PD for $H_0$, Sample " + filename)
   elif dimension == 1:
-    plt.title("PD for $H_0$, Sample " + str('%02d' % x) + str('%02d' % y))
+    plt.title("PD for $H_1$, Sample " + filename)
   plt.xlabel('Birth')
   plt.ylabel('Lifetime')
   if dimension == 0:
@@ -74,12 +108,11 @@ def plotPers(dgm, x, y, path, dimension = 0):
   plt.scatter(xvalue, 9, s=4000, facecolors='none', edgecolors='r')
   plt.annotate('20', (xvalue+0.2, 9.2))
   plt.show()
-  fig.savefig(path +
-              str('%02d' % x) + str('%02d' % y) + "pd.png")
+  fig.savefig(filename + "pd.png")
 
 # following are help functions for the former two.
 
-def check(x):
+def checkval(x):
   c = [235,
       215,
       195,
@@ -193,77 +226,55 @@ def read(dgm):
 """
   plotPi(dgm, x, y, path, dimension, method, _min, _max)
     plot persistent image and return the according array (100x100)
-    precondition: if want to call calcExtreme() before to know
+    precondition: 'scaled' method is only valid when having the extremities
+                  produced by calcExtreme()
   dimension = {0, 1}, specify method of filtration.
   method = {'unscaled','scaled'}, specify method of plotting
+  _min, _max = only available when method is 'scaled'
 """
-def plotPi(dgm0, x, y, path, dimension = 0, method = 'unscaled', _min = 0, _max = 0):
+def plotPi(dgm0, x, y, path, dimension = 0, method = 'unscaled', _min = 0, _max = 0, gen = True):
   dgm = copy.deepcopy(dgm0)
-  if dimension == 1:
-    # For dimension 1, plot function only behave normally when shift all points to
-    # positive axis.
-    for n in range (len(dgm)):
-      for k in range (len(dgm[n])):
-          dgm[n][k] = 11 + dgm[n][k]
-  pim = PersImage()
-  PersImage.__init__(pim, spread=0.5, specs = {"maxBD": 13,
-              "minBD": 0},pixels=[100,100], verbose=False)
-  imgs = pim.transform(dgm)
+  if gen:
+      if dimension == 1:
+        # For dimension 1, plot function only behave normally when shift all points to
+        # positive axis.
+        for n in range (len(dgm)):
+            for k in range (len(dgm[n])):
+                dgm[n][k] = 11 + dgm[n][k]
+      pim = PersImage()
+      PersImage.__init__(pim, spread=0.5, specs = {"maxBD": 13,
+                                                   "minBD": 0},pixels=[100,100], verbose=False)
+      imgs = pim.transform(dgm)
+  else:
+      imgs = dgm
   ax = plt.gca()
   fig, ax = plt.subplots(figsize=(6, 6))
   plt.xticks([])
   plt.yticks([])
   if dimension == 0:
-    plt.title("PI for $H_0$\nwith 100x100 pixels, sample" + str('%02d' % x) + str('%02d' % y))
+    plt.title("PI for $H_0$\nwith 100x100 pixels, sample " + str('%02d' % x) + str('%02d' % y))
   elif dimension == 1:
-    plt.title("PI for $H_1$\nwith 100x100 pixels, sample" + str('%02d' % x) + str('%02d' % y))
+    plt.title("PI for $H_1$\nwith 100x100 pixels, sample " + str('%02d' % x) + str('%02d' % y))
   if method == 'unscaled':
     ax.imshow(imgs, cmap=plt.get_cmap("plasma"))
     plt.savefig(path + str('%02d' % x) + str('%02d' % y) + "upi.png")
   elif method == 'scaled':
     ax.imshow(imgs, cmap=plt.get_cmap("CMRmap"), vmin = _min, vmax = _max) #rainbow
     plt.savefig(path + str('%02d' % x) + str('%02d' % y) + "pi.png")
-  imgs_array = np.array([img.flatten() for img in imgs])
-  return imgs_array
-
-"""
-  pi(dgm, x, y, dimension)
-    only return the according array
-  dimension = {0, 1}, specify method of filtration.
-"""
-def pi(dgm, x, y, dimension = 0):
-  if dimension == 1:
-    for n in range (len(dgm)):
-      for k in range (len(dgm[n])):
-          dgm[n][k] = 11 + dgm[n][k]
-  pim = PersImage()
-  PersImage.__init__(pim, spread=0.5, specs = {"maxBD": 13,
-              "minBD": 0},pixels=[100,100], verbose=False)
-  imgs = pim.transform(dgm)
-  imgs_array = np.array([img.flatten() for img in imgs])
-  return imgs_array
+  if gen:
+      return(imgs)
 
 """
   _min, _max = calcExtreme(dgm):
-    generate persistent image array for desired pictures,
-    concatenate into one array and pass to this function to calculate
-    the extrmities for plotting scaled persistent images
+    calculate the extremities for plotting scaled persistent images
 """
 def calcExtreme(dgm):
   _max = 0
   _min = 0
-  dgmlist = []
   for i in range (len(dgm)):
-      pim = PersImage()
-      PersImage.__init__(pim, spread=0.5, specs = {"maxBD": 13,
-                  "minBD": 0}, pixels=[100,100], verbose=False)
-      imgs = pim.transform(dgm[i])
-      imgs_array = np.array([img.flatten() for img in imgs])
-      dgmlist.append(imgs_array)
-      
+      imgs = dgm[i]
       if np.amax(imgs) > _max:
           _max = np.amax(imgs)
       if np.amin(imgs) < _min:
           _min = np.amin(imgs)
-  dgmlist = np.array(dgmlist)
   return _min, _max
