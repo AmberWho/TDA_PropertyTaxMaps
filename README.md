@@ -20,7 +20,7 @@ After the erosion method, all processed property tax maps are available in [Modm
 To perform the erosion method on a grayscale map parcel, for example, _0101gray.png_, place the grayscale image, _python_functions.py_ and _python_commands.py_ (available in [Codes](/Codes)) in the same folder, and:
 1. Install _PIL_, _numpy_ package for Python
 2. In the current folder, open _python_commands.py_, and run ```cell #0``` (import functions, initialize variables) with the desired image index (in this case set ```filename = "0101"```)
-3. Run the ```cell #1```
+3. Run ```cell #1```
 4. The processed image will be produced, titled _mod0101.png_
 
 ### Persistence Diagrams and Persistence Images
