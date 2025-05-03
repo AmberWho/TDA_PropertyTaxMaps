@@ -2,12 +2,11 @@
 commands_processing.py
 
 Author:   Amber, Anbo Wu
-Date:     March 2025
+Date:     Mar 2025
 Project:  Topological Data Analysis in an Economic Context: Property Tax Maps
 """
 import os
-PATH = "C:/Projects/TDA/_0Codes"
-# PATH = "/path/to/your/directory"
+PATH = "/path/to/your/directory" # folder path containing the raw image
 os.chdir(PATH) 
 
 import numpy as np
