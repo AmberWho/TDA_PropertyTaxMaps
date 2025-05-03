@@ -45,4 +45,7 @@ To produce the persistence image:
 
 ## Clustering and Evaluation
 
+Readers may reproduce all the other plots presented in the paper, including a summary of iteration-based clustering results and visual presentations of the clustering results, using _commands\_evaluation.py_ and _python\_functions.py_ (available in [Codes](/Codes)).
+Authors choose to omit the instructions. Please refer to the in-line comments of _commands\_evaluation.py_ for further details.
+
 ## Land Use Maps of Samples from California
