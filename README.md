@@ -10,7 +10,7 @@ __Table of contents by folders and files:__
 
 [Landuse](/Landuse) - [Land Use Maps](#land-use-maps-of-samples-from-california)
 
-[Maps](/Maps)/[Modmaps](/Modmaps) - [Persistence Diagrams and Persistence Images](#persistence-diagrams-and-persistence-images)
+[Maps](/Maps)/[Modmaps](/Modmaps) - [Raw property tax maps and grayscale images](#persistence-diagrams-and-persistence-images)
 
 # Supplementary materials to Topological Data Analysis in an Economic Context: Property Tax Maps
 This is a joint work by David Damiano (Department of Mathematics and Computer Science, College of the Holy Cross, ddamiano@holycross.edu) and Anbo Wu (Department of Mathematics, The Ohio State University, wu.3488@osu.edu).
