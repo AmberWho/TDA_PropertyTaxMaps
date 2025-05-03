@@ -639,7 +639,7 @@ def evalCluster(dist, tag):
   ctmed = {'True', 'False'}, counting the number of occurrence of solutions,
           is available only if prtmed = True
 """
-def printCluster(pi, dist, name, cluster, iteration, method, f, maxiteration = 300, prtmed = True, ctmed = False):
+def printCluster(pi, dist, name, cluster, iteration, method, f, maxiteration = 300, prtmed = False, ctmed = False):
     print("\nCLUSTER: " + str(cluster), "|| ITERATION: " + str(iteration),
           "|| METHOD: " + method, "|| MAX ITERATION: " + str(maxiteration), file = f)
 
@@ -719,7 +719,7 @@ def printCluster(pi, dist, name, cluster, iteration, method, f, maxiteration = 3
         unique, counts = np.unique(arr_med, return_counts=True)
         print("sample index and occurrence: " + str(dict(zip(unique, counts))), file = f)
         print("")
-    if prtmed:
+    if not prtmed:
         df_output = pd.DataFrame({'Average Size': dfkm_size.mean(axis=1)})
         df_output['Maximum Size'] = dfkm_size.max(axis='columns')
         df_output['Minimum Size'] = dfkm_size.min(axis='columns')

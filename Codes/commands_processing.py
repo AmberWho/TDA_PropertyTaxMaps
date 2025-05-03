@@ -2,7 +2,7 @@
 commands_processing.py
 
 Author:   Amber, Anbo Wu
-Date:     Mar 2025
+Date:     March 2025
 Project:  Topological Data Analysis in an Economic Context: Property Tax Maps
 """
 import os
@@ -12,7 +12,7 @@ os.chdir(PATH)
 import numpy as np
 
 filename = "0101"   # raw image name, string of four digits
-dimension = 0       # dimension = {0, 1}, 0 = H_0, 1 = H_0^*
+dimension = 0       # dimension = {0, 1}, 0 = PH_0, 1 = PH_0^*
 path = ""           # desired file output location, 
                     # empty then output to current folder
                     
