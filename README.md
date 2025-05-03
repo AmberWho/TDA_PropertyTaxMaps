@@ -1,10 +1,15 @@
 __This Github site is currently under construction. It will provide data and code supporting [David Damiano, Anbo Wu, "Topological Data Analysis in an Economic Context: Property Tax Maps"](https://ieeexplore.ieee.org/document/9671276).__
 
-Table of contents by folders and files:
+__Table of contents by folders and files:__
+
 [Codes](/Codes)  - [ _commands\_processing.py_](#samples-and-image-processing-related-files) and [_commands\_evaluation.py_](#clustering-and-evaluation)
+
 [Data](/Data) - [_pdh0.npy_, _pdh1.npy_, _pdh0\_fin.npy_, _pdh1\_fin.npy_](#persistence-diagrams-and-persistence-images)
+
 [H0](/H0)/[H1](/H1) - [Persistence Diagrams and Persistence Images](#persistence-diagrams-and-persistence-images)
+
 [Landuse](/Landuse) - [Land Use Maps](#land-use-maps-of-samples-from-california)
+
 [Maps](/Maps)/[Modmaps](/Modmaps) - [Persistence Diagrams and Persistence Images](#persistence-diagrams-and-persistence-images)
 
 # Supplementary materials to Topological Data Analysis in an Economic Context: Property Tax Maps
