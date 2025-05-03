@@ -1,5 +1,12 @@
 __This Github site is currently under construction. It will provide data and code supporting [David Damiano, Anbo Wu, "Topological Data Analysis in an Economic Context: Property Tax Maps"](https://ieeexplore.ieee.org/document/9671276).__
 
+Table of contents by folders and files:
+[Codes](/Codes)  - [ _commands\_processing.py_](#samples-and-image-processing-related-files) and [_commands\_evaluation.py_](#clustering-and-evaluation)
+[Data](/Data) - [_pdh0.npy_, _pdh1.npy_, _pdh0\_fin.npy_, _pdh1\_fin.npy_](#persistence-diagrams-and-persistence-images)
+[H0](/H0)/[H1](/H1) - [Persistence Diagrams and Persistence Images](#persistence-diagrams-and-persistence-images)
+[Landuse](/Landuse) - [Land Use Maps](#land-use-maps-of-samples-from-california)
+[Maps](/Maps)/[Modmaps](/Modmaps) - [Persistence Diagrams and Persistence Images](#persistence-diagrams-and-persistence-images)
+
 # Supplementary materials to Topological Data Analysis in an Economic Context: Property Tax Maps
 This is a joint work by David Damiano (Department of Mathematics and Computer Science, College of the Holy Cross, ddamiano@holycross.edu) and Anbo Wu (Department of Mathematics, The Ohio State University, wu.3488@osu.edu).
 ## Samples and Image-processing-related Files
@@ -18,7 +25,7 @@ To reproduce the grayscale version of a map parcel, place _commands\_processing.
 - __Output__: grayscale image titled _city index + sample index + gray.png_
 
 ### Erosion method
-After the erosion method, all processed property tax maps are available in [Modmaps](/Mpdmaps).
+After the erosion method, all processed property tax maps are available in [Modmaps](/Modmaps).
 
 To perform the erosion method on a grayscale map parcel _city index + sample index + gray.png_:
 - __Required package(s)__: _PIL_, _numpy_
